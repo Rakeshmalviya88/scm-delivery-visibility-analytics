@@ -1,0 +1,9 @@
+route_id,origin_dc_id,destination_customer_id,distance_km,typical_transit_hours,risk_zone
+301,1,101,150,6.0,Low
+302,1,108,360,10.0,Medium
+303,2,102,510,14.0,Medium
+304,3,104,280,8.0,Low
+305,4,103,145,5.0,Low
+306,4,106,840,21.0,High
+307,3,107,620,16.0,Medium
+308,2,105,680,18.0,High

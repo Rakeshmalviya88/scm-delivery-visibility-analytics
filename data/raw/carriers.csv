@@ -1,0 +1,5 @@
+carrier_id,carrier_name,mode,base_cost_per_km,reliability_score
+201,SwiftFreight,Road,32.5,0.91
+202,RapidHaul,Road,30.2,0.86
+203,AeroExpress,Air,75.0,0.95
+204,RailMove,Rail,24.0,0.84

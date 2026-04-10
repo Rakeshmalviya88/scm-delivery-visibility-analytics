@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+.venv/
+venv/
+.vscode/
+.idea/
+.env
+*.db
+
+# Generated model/data artifacts
+models/*.joblib
+data/processed/*.csv
+
+# OS files
+.DS_Store
+Thumbs.db

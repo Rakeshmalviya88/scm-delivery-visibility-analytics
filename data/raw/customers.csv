@@ -1,0 +1,9 @@
+customer_id,customer_name,city,state,segment
+101,RetailHub A,Mysuru,Karnataka,Retail
+102,RetailHub B,Coimbatore,Tamil Nadu,Retail
+103,ECom Fulfillment C,Pune,Maharashtra,E-Commerce
+104,Wholesale D,Vijayawada,Andhra Pradesh,Wholesale
+105,RetailHub E,Kochi,Kerala,Retail
+106,Wholesale F,Nagpur,Maharashtra,Wholesale
+107,ECom Fulfillment G,Visakhapatnam,Andhra Pradesh,E-Commerce
+108,RetailHub H,Mangalore,Karnataka,Retail
