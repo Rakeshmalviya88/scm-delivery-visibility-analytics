@@ -21,7 +21,7 @@ The solution includes:
 - `docs/` - analysis, methodology, business impact, and deliverables
 - `report/` - consolidated project report draft
 
-## Quick Start
+## Quick 
 
 1. Create and activate a Python environment.
 2. Install dependencies:
@@ -64,14 +64,7 @@ Default connection settings:
 - Password: empty
 - Database: `scm_delivery_visibility`
 
-You can override these with environment variables:
-- `SCM_MYSQL_HOST`
-- `SCM_MYSQL_PORT`
-- `SCM_MYSQL_USER`
-- `SCM_MYSQL_PASSWORD`
-- `SCM_MYSQL_DATABASE`
 
-Recommended `.env` content:
 
 ```env
 SCM_MYSQL_HOST=localhost

@@ -25,7 +25,37 @@ def load_data() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]
     carriers = pd.read_sql("SELECT * FROM carriers", engine)
     forecast = pd.read_csv(PROCESSED_DIR / "monthly_forecast.csv", parse_dates=["shipment_date"])
 
-    df = scored.merge(routes, on="route_id", how="left").merge(carriers, on="carrier_id", how="left")
+    df = scored.copy()
+
+    route_cols = {
+        "origin_dc_id",
+        "destination_customer_id",
+        "distance_km",
+        "typical_transit_hours",
+        "risk_zone",
+    }
+    if not route_cols.issubset(df.columns):
+        df = df.merge(routes, on="route_id", how="left")
+
+    carrier_cols = {"carrier_name", "mode", "base_cost_per_km", "reliability_score"}
+    if not carrier_cols.issubset(df.columns):
+        df = df.merge(carriers, on="carrier_id", how="left")
+
+    for col in carrier_cols:
+        if col not in df.columns:
+            x_col = f"{col}_x"
+            y_col = f"{col}_y"
+            if x_col in df.columns and y_col in df.columns:
+                df[col] = df[x_col].fillna(df[y_col])
+            elif x_col in df.columns:
+                df[col] = df[x_col]
+            elif y_col in df.columns:
+                df[col] = df[y_col]
+
+    drop_cols = [c for c in df.columns if c.endswith("_x") or c.endswith("_y")]
+    if drop_cols:
+        df = df.drop(columns=drop_cols)
+
     df["month"] = df["shipment_date"].dt.to_period("M").astype(str)
     return df, routes, carriers, forecast
 
@@ -59,7 +89,8 @@ def _kpi_cards(df: pd.DataFrame) -> html.Div:
 
 def _layout(app: Dash, df: pd.DataFrame, carriers: pd.DataFrame) -> html.Div:
     months = sorted(df["month"].unique())
-    carrier_options = [{"label": c, "value": c} for c in sorted(carriers["carrier_name"].unique())]
+    carrier_series = df["carrier_name"] if "carrier_name" in df.columns else carriers["carrier_name"]
+    carrier_options = [{"label": c, "value": c} for c in sorted(carrier_series.dropna().unique())]
 
     return html.Div(
         [
