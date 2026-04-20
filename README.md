@@ -96,3 +96,10 @@ After running `python scripts/setup_db.py`, inspect the tables in MySQL Workbenc
 - Random Forest Regressor for delay magnitude estimation.
 - Random Forest Classifier for high-risk delay prediction.
 - Monthly demand proxy forecast based on shipments and route trend.
+
+
+Running commands :
+```bash 
+python scripts\setup_db.py
+python src\dashboard\app.py
+```
